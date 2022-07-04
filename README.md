@@ -77,4 +77,35 @@
             # logs 폴더 바로 안, 또는 그 안의 다른 폴더(들) 안의 debug.log
             logs/**/debug.log
 
-    
+   * 버전을 만들기
+
+      - git status 명령
+            - 변경사항 확인
+            - untracked(추적하지 않은) -> 아직 git의 관리에 들어가지 않은 파일
+
+      - git add 명령
+            - 파일을 버전(타임캡슐)에 담기
+            - git add [파일이름] 으로 사용할때도 있지만
+            보통의 경우 git add .으로 다 같이 stage에 올림
+
+      - git commit 명령
+            - 버전에 담은 파일을 묻기(타임 캡슐이라고 생각)
+            - default로 git commit명령을 실행하면 vim 에디터 실행됨.
+            - git commit -m "message" -> commit메세지와 동시에 commit함
+            - 파일들을 다 수정한 뒤 commit하면 한번에 가능 git은 그 당시의 상태를 기준으로 저장하기 때문에 commit하기 전 상태와 후 상태를 기준으로 함.
+            (결국 commit의 상태 기준이라는 것)
+            - source tree에서 History로 확인 가능하다.
+      
+      - git log 명령
+            - commit한 상태에 대한 기록을 확인 가능
+
+   * 파일 수정 후 상태 확인하기
+
+      - git status를 통해 상태 확인
+         ex) 파일 하나 삭제, 파일 하나 수정, 새로운 파일 생성을 했다고 한다면 그에 맞게 삭제되거나 수정된 것은 
+         not commit으로 알려주고 , 새로 생성된 파일은 git의 관리를 안받고 있다는 의미로 untracked files라고 알려준다.
+
+      - git diff를 통해 달라진점 확인
+         -> git status와 다른점은 git의 관리를 아직 안 받고 있는 untracked files(추적되지 않는 파일)에 대해서는 확인하지 못하고 기존에 관리 받고 있던 파일들에 대해서 어떤점이 변경되고 수정되었는지 확인할 수 있다.
+      
+      
