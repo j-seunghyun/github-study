@@ -30,4 +30,51 @@
       - .git폴더 삭제하고 git status명령을 보면 git이 관리하고 있지 않으므로 
       not a git repository라고 알려준다.
    
-   
+   * git의 관리에서 특정 파일/폴더를 배제해야 할 경우
+
+     - 포함 필요 x
+
+         - 자동으로 생성 또는 다운로드 되는 파일들(빌드 -> java가 class파일로 빌드되는 것처럼 , 라이브러리)
+
+         - 이러한 파일들은 굳이 git에서 버전관리를 하지 않아도 언제든 인터넷 등에서 다운로드 가능하기 때문에
+
+     - 포함하지 말아야 할 때
+
+         - 보안상 민감한 정보를 담은 파일(따로 관리하는게 좋음)
+
+      
+   - .gitignore파일을 사용해서 배제할 요소들 지정 가능하다.
+
+         - .gitignore라는 파일을 자체적으로 생성하고 그 안에 무시할 파일을 추가해줌으로서 사용
+         
+         - 추가를 완료한 후 git status명령을 통해 확인했을때 더 이상 추가한 파일은 git에서 관리하지 않음을 확인할 수 있다. 
+
+         - .gitignore형식 확인 https://git-scm.com/docs/gitignore
+            # 이렇게 #를 사용해서 주석
+
+            # 모든 file.c
+            file.c
+
+            # 최상위 폴더의 file.c
+            /file.c
+
+            # 모든 .c 확장자 파일
+            *.c
+
+            # .c 확장자지만 무시하지 않을 파일
+            !not_ignore_this.c
+
+            # logs란 이름의 파일 또는 폴더와 그 내용들
+            logs
+
+            # logs란 이름의 폴더와 그 내용들
+            logs/
+
+            # logs 폴더 바로 안의 debug.log와 .c 파일들
+            logs/debug.log
+            logs/*.c
+
+            # logs 폴더 바로 안, 또는 그 안의 다른 폴더(들) 안의 debug.log
+            logs/**/debug.log
+
+    
