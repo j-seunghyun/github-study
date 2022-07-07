@@ -441,7 +441,7 @@
 
                         - 아직 origin(즉 원격 저장소)에 없는 것들을 로컬 저장소(내 컴퓨터)에서 원격 저장소에 push 밀어준다는 것
 
-                        - '-u' 또는 '--set-upstream' : 현재 브랜치와 명시된 원격 브랜치 기본 연결
+                        - '-u' 또는 '--set-upstream' : 현재 브랜치와 명시된 원격 브랜치 기본 연결(--set-upstream이 -u로 축약된 것)
                         - 즉 나의 현재 브랜치가 디폴트로 어느 원격에 어떤 브랜치와 연동이 될지를 지정해주는 것 -> 이후로는 git push 명령만 해주면 자동으로 origin의 main에 push되는 것
 
                   * 다른 사람의 작업물을 git의 관리와 함께 다운로드 받는 법
@@ -449,4 +449,59 @@
                         - git clone (원격 저장소 주소) 명령을 사용
 
                   
+                  * pull 할 것이 있을때 push를 한다면
+
+                        - 원격 저장소에 먼저 적용된 새 버전이 있는 경우 push하지 못한다. 
+                        - pull을 해서 원격의 버전을 받아온 다음에 push가 가능하다.
+
+                  * push 할 것이 있을때 pull을 하는 두가지 방법
+
+                        * git pull --no-rebase (merge 방식)
+
+                              - Local의 메인 브랜치와 원격의 메인 브랜치 합쳐지는 것임
+                                
+                        * git pull --rebase (rebase 방식)
+
+                              - pull 상의 rebase는 다름(협업시 사용 ok)
+                              - 즉 협업할 때 rebase사용하는 것은 pull할 때는 괜찮다는 뜻
+                              - 원격에 맞춰서 원격을 먼저 붙힌다음 내가 한 것을 그 다음에 붙히는 것
+                        
+                        - 모든 과정이 완료된 후 push를 통해 원격저장소에 업데이트
+                  
+
+            * 충돌이 발생한 경우
+
+                  * push의 경우 업데이트가 먼저 원격저장소에 되어있다면 pull을 먼저 해야지 push할 수 있기에 이 과정에서 충돌을 발생안한다.
+
+                  * git pull --no-rebase (merge 방식)
+
+                        - Local의 메인 브랜치와 원격의 메인 브랜치의 merge과정에서 충돌이 발생한 것으로 마찬가지로 수정한 후 commit해주면 된다.
+
+                  * git pull --rebase (rebase 방식)
+
+                        - rebase방식을 사용하면 충돌 발생한 것에 수정을 어떻게 하냐에 따라서 commit이 여러번 될 수도 있다.
+            
+            * 로컬의 내역 강제 push (협업 아닐시에)
+
+                  * git push --force
+                        - 원격의 업데이트를 무시하고 강제로 push하는 방법이며 협업시에는 사용 x
+            
+            * 로컬에서 원격의 브랜치와 로컬의 브랜치 모두 같이 보는 법
+
+                  * git branch -all or git branch -a
+            
+            * 원격의 브랜치 로컬에 받아오기
+
+                  * git fetch
+                        - 원격의 변경사항을 가져오는 명령
+                  
+                  * git switch -t origin/from-remote
+                        - origin에서 로컬로 from-remote 브랜치를 복사한 다음 앞으로도 계속 로컬의 from-remote는 origin의 from-remote와 계속 연결하겠다는 명령
+            
+            * 원격의 브랜치 삭제
+
+                  - git push (원격 이름) --delete (원격의 브랜치명)
+                  - ex) git push origin --delete from-local
+            
+            
                   
